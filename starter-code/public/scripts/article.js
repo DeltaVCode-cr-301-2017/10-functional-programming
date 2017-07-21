@@ -43,8 +43,8 @@ var app = app || {};
     // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
     // There is no need to push to anything.
 
-    Article.all = rawData.map(function(ele) {
-      new Article(ele);
+    Article.all = rows.map(function(ele) {
+      return new Article(ele);
     });
   }
   Article.fetchAll = callback => {
@@ -58,10 +58,14 @@ var app = app || {};
   };
 
   // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
-  Article.numWordsAll = (articles) => {
-    return Article.all.map((articles) => {
-      articles.body.split(' ');
-    }).reduce()
+  Article.numWordsAll = () => {
+    return Article.all.map((article) => {
+      var words = article.body.split(' ');
+      var articleLength = words.length;
+      return articleLength;
+    }).reduce((acc, articleLength) => {
+      return acc + articleLength;
+    }, 0)
   };
 
   // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
