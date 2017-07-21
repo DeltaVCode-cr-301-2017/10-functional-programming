@@ -36,7 +36,10 @@ var app = app || {};
 
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
-
+    Article.all = rawData.map(function(ele){
+      return new Article(ele);
+    });
+  }
     // DONE: Refactor this forEach code, by using a `.map` call instead, since what we are trying to accomplish
     // is the transformation of one collection into another. Remember that we can set variables equal to the result
     // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
@@ -47,9 +50,8 @@ var app = app || {};
     Article.all.push(new Article(ele));
   });
   */
-Article.all = rawData.map(function(ele){
-  return new Article(ele);
-});
+
+
 
   Article.fetchAll = callback => {
     $.get('/articles')
@@ -82,10 +84,10 @@ Article.all = rawData.map(function(ele){
     return Article.all.map(function(item){
       return item.author;
     }).reduce(function(acc, x){
-       if(acc.indexOf(x) === -1){
-         acc.push(x);
-       }
-       return acc;
+      if(acc.indexOf(x) === -1){
+        acc.push(x);
+      }
+      return acc;
     },[])
   }
 
@@ -97,11 +99,11 @@ Article.all = rawData.map(function(ele){
     return Article.allAuthors().map(author => {
       var art = Article.all.filter(function(item){
         return item.author === author
-         }).map(function(item){
-            return item.body.split(' ').length;
-             }).reduce(function(start,next){
-                return start + next;
-                });
+      }).map(function(item){
+        return item.body.split(' ').length;
+      }).reduce(function(start,next){
+        return start + next;
+      });
       return {
         authorName: author
         ,authorWords: art
