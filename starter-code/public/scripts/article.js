@@ -164,4 +164,4 @@ var app = app || {};
       .then(callback);
   };
   module.Article = Article;
-})(app);
+}(app));
