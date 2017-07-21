@@ -36,7 +36,7 @@ var app = app || {};
 
   Article.loadAll = rows => {
     rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
-    Article.all = rawData.map(function(ele){
+    Article.all = rows.map(function(ele){
       return new Article(ele);
     });
   }
