@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="/styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
     <!-- TODO: Setup a template for each row of the Author Stats section of this page: -->
+    <script id="author-template" type="text/x-handlebars-template">
+      <li>{{authorName}}</li>
+      <li>{{authorWords}}</li>
+    </script>
+<!-----End--->
 
   </head>
   <body>
@@ -38,6 +43,7 @@
         <h2>Author Stats</h2>
         <p><em>Details on who is writing, and how much writing they are doing...</em></p>
         <ul class="author-stats">
+<!---Insert Script-->
         </ul>
       </section>
     </main>
