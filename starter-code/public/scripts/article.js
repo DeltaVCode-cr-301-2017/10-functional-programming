@@ -93,19 +93,29 @@ Article.all = rawData.map(function(ele){
   /*Article.allAuthors = () => {
     return Article.all.map().reduce();
   };*/
-
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
-      // TODO: Transform each author string into an object with properties for
+      var art = Article.all.filter(function(item){
+        return item.author === author
+         }).map(function(item){
+            return item.body.split(' ').length;
+             }).reduce(function(start,next){
+                return start + next;
+                });
+      return {
+        authorName: author
+        ,authorWords: art
+      }
+    });
+  };
+
+      // DONE: Transform each author string into an object with properties for
       // the author's name, as well as the total number of words across all articles
       // written by the specified author.
       // HINT: This .map should be setup to return an object literal with two properties.
       // The first property should be pretty straightforward, but you will need to chain
       // some combination of filter, map, and reduce to get the value for the second
       // property.
-
-    })
-  };
 
   Article.truncateTable = callback => {
     $.ajax({
