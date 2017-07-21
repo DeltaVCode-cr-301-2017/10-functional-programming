@@ -52,12 +52,12 @@ Article.loadAll = rows => {
 
 Article.fetchAll = callback => {
   $.get('/articles')
-  .then(
-    results => {
-      Article.loadAll(results);
-      callback();
-    }
-  )
+    .then(
+      results => {
+        Article.loadAll(results);
+        callback();
+      }
+    )
 };
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
@@ -89,17 +89,17 @@ Article.truncateTable = callback => {
     url: '/articles',
     method: 'DELETE',
   })
-  .then(console.log) // REVIEW: Check out this clean syntax for just passing 'assumed' data into a named function!
-                     // The reason we can do this has to do with the way Promise.prototype.then works. It's a little
-                     // outside the scope of 301 material, but feel free to research!
-  .then(callback);
+    .then(console.log) // REVIEW: Check out this clean syntax for just passing 'assumed' data into a named function!
+  // The reason we can do this has to do with the way Promise.prototype.then works. It's a little
+  // outside the scope of 301 material, but feel free to research!
+    .then(callback);
 };
 
 Article.prototype.insertRecord = function(callback) {
   // REVIEW: Why can't we use an arrow function here for .insertRecord()??
   $.post('/articles', {author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title})
-  .then(console.log)
-  .then(callback);
+    .then(console.log)
+    .then(callback);
 };
 
 Article.prototype.deleteRecord = function(callback) {
@@ -107,8 +107,8 @@ Article.prototype.deleteRecord = function(callback) {
     url: `/articles/${this.article_id}`,
     method: 'DELETE'
   })
-  .then(console.log)
-  .then(callback);
+    .then(console.log)
+    .then(callback);
 };
 
 Article.prototype.updateRecord = function(callback) {
@@ -125,6 +125,6 @@ Article.prototype.updateRecord = function(callback) {
       author_id: this.author_id
     }
   })
-  .then(console.log)
-  .then(callback);
+    .then(console.log)
+    .then(callback);
 };
