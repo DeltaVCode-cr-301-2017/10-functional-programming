@@ -61,10 +61,19 @@ Article.all = rawData.map(function(ele){
       )
   };
 
-  // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
+  // DONE: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
+
   Article.numWordsAll = () => {
-    return Article.all.map().reduce()
+    return Article.all.map(function(item){
+      return item.body.split(' ').length;
+    }).reduce(function(start,next){
+      return start + next;
+    })
   };
+
+  /*Article.numWordsAll = () => {
+    return Article.all.map().reduce()
+  };*/
 
   // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
   // probably need to use the optional accumulator argument in your reduce call.
