@@ -88,7 +88,7 @@ var app = app || {};
         name: author,
         words: Article.numWordsAll(authorArticles)
       }
-      // TODO: Transform each author string into an object with properties for
+      // TO/DO: Transform each author string into an object with properties for
       // the author's name, as well as the total number of words across all articles
       // written by the specified author.
       // HINT: This .map should be setup to return an object literal with two properties.
